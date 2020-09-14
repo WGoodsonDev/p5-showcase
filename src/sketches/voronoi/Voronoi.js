@@ -1,7 +1,5 @@
 import Delaunator from "delaunator";
 
-let canvas;
-
 export default function Voronoi(p){
     // Globals
     const numPoints = 160;
@@ -192,10 +190,7 @@ export default function Voronoi(p){
     // P5 lifecycle
     p.setup = () => {
         // Initialize canvas
-        canvas = p.createCanvas(p.windowWidth - 18, p.windowHeight);
-        canvas.position(0,0);
-        canvas.style('z-index', '0');
-        canvas.style('overflow-x', 'hidden');
+        p.createCanvas(p.windowWidth - 18, p.windowHeight);
         // Initialize seed points
         newPoints();
         // Seed RNG with a random value

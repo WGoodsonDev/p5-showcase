@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components';
 import { BsList, BsX } from 'react-icons/bs'
 import { AiOutlineHeatMap } from "react-icons/ai";
 import P5Wrapper from 'react-p5-wrapper';
+import { Tabs, Tab, Panel } from '@bumaga/tabs';
 
 import Collatz from "./sketches/collatz/Collatz";
 import Voronoi from "./sketches/voronoi/Voronoi";
@@ -101,118 +102,69 @@ const ProcessingBtn = styled(AiOutlineHeatMap)`
   ${menuIconStyles}
 `
 
+const TabButtons = styled.div`
+  
+`
+
+const TabButton = styled.button`
+  padding: 0;
+  font: inherit;
+  color: black;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+`
+
 function App() {
-
-    const [isOpen, setIsOpen] = useState(false);
-    const [delay, setDelay] = useState(true);
-    const [savedPos, setSavedPos] = useState(0);
-
-    const collatzRef = useRef();
-    const walksRef = useRef();
-    const voronoiRef = useRef();
-    const recamanRef = useRef();
-    const coronaRef = useRef();
-    const ringzRef = useRef();
-    const polarRosesRef = useRef();
-
-    const scrollTo = ref => ref.current.scrollIntoView({ behavior: 'smooth' });
-
-
-    const handleClick = (ref) => {
-        toggleClose();
-        setTimeout(() => {
-            scrollTo(ref)
-        }, 400)
-    };
-
-
-    const toggleOpen = () => {
-        setIsOpen(true)
-        setSavedPos(window.pageYOffset)
-    }
-
-    const toggleClose = () => {
-        setIsOpen(false)
-        // setTimeout(() =>{
-        //     setDelay(!delay)
-        // }, 700)
-        // setSavedPos(contentRef.current.scrollTop);
-    }
 
   return (
       <Main>
-          <MenuToggle onClick={() => !isOpen ? toggleOpen() : toggleClose()}>
-              <StyledOpenBtn />
-          </MenuToggle>
-          <MenuItems>
-              <MenuItem isOpen={isOpen}>
-                  <ProcessingBtn/>
-                  <MenuLink onClick={() => handleClick(collatzRef)}>
-                      Collatz
-                  </MenuLink>
-              </MenuItem>
-              <MenuItem isOpen={isOpen}>
-                  <ProcessingBtn/>
-                  <MenuLink onClick={() => handleClick(walksRef)}>
-                      Walks
-                  </MenuLink>
-              </MenuItem>
-              <MenuItem isOpen={isOpen}>
-                  <ProcessingBtn/>
-                  <MenuLink onClick={() => handleClick(voronoiRef)}>
-                      Voronoi
-                  </MenuLink>
-              </MenuItem>
-              <MenuItem isOpen={isOpen}>
-                  <ProcessingBtn/>
-                  <MenuLink onClick={() => handleClick(recamanRef)}>
-                      Recaman
-                  </MenuLink>
-              </MenuItem>
-              <MenuItem isOpen={isOpen}>
-                  <ProcessingBtn/>
-                  <MenuLink onClick={() => handleClick(coronaRef)}>
-                      Corona
-                  </MenuLink>
-              </MenuItem>
-              <MenuItem isOpen={isOpen}>
-                  <ProcessingBtn/>
-                  <MenuLink onClick={() => handleClick(ringzRef)}>
-                      Ringz
-                  </MenuLink>
-              </MenuItem>
-              <MenuItem isOpen={isOpen}>
-                  <ProcessingBtn/>
-                  <MenuLink onClick={() => handleClick(polarRosesRef)}>
-                      Polar Roses
-                  </MenuLink>
-              </MenuItem>
-          </MenuItems>
-          <Content id={'content'} isOpen={isOpen}>
-              <div ref={voronoiRef}>
-                  {/*<P5Wrapper sketch={Voronoi}/>*/}
-              </div>
-              <div ref={collatzRef}>
-                  {/*<P5Wrapper sketch={Collatz}/>*/}
-              </div>
-              <div ref={walksRef}>
-                  {/*<P5Wrapper sketch={Walks}/>*/}
-              </div>
-              <div ref={recamanRef}>
-                  {/*<P5Wrapper sketch={Recaman}/>*/}
-              </div>
-              <div ref={coronaRef}>
-                  {/*<P5Wrapper sketch={Corona}/>*/}
-              </div>
-              <div ref={ringzRef}>
-                  {/*<P5Wrapper sketch={Ringz}/>*/}
-              </div>
-              <div ref={polarRosesRef}>
-                  {/*<P5Wrapper sketch={PolarRoses}/>*/}
-              </div>
+          <Content id={'content'}>
+              <Tabs>
+                  <TabButtons>
+                      <Tab><TabButton>Tab 1</TabButton></Tab>
+                      <Tab><TabButton>Tab 2</TabButton></Tab>
+                      <Tab><TabButton>Tab 3</TabButton></Tab>
+                      <Tab><TabButton>Tab 4</TabButton></Tab>
+                      <Tab><TabButton>Tab 5</TabButton></Tab>
+                      <Tab><TabButton>Tab 6</TabButton></Tab>
+                      <Tab><TabButton>Tab 7</TabButton></Tab>
+                  </TabButtons>
+                  <Panel><P5Wrapper sketch={Recaman}/></Panel>
+                  <Panel><P5Wrapper sketch={Ringz}/></Panel>
+                  <Panel><P5Wrapper sketch={Voronoi}/></Panel>
+                  <Panel><P5Wrapper sketch={Walks}/></Panel>
+                  <Panel><P5Wrapper sketch={Corona}/></Panel>
+                  <Panel><P5Wrapper sketch={PolarRoses}/></Panel>
+                  <Panel><P5Wrapper sketch={Collatz}/></Panel>
+              </Tabs>
+
           </Content>
       </Main>
   );
 }
 
 export default App;
+
+// <div ref={voronoiRef}>
+//     {/*<P5Wrapper sketch={Voronoi}/>*/}
+// </div>
+// <div ref={collatzRef}>
+//     {/*<P5Wrapper sketch={Collatz}/>*/}
+// </div>
+// <div ref={walksRef}>
+//     {/*<P5Wrapper sketch={Walks}/>*/}
+// </div>
+// <div ref={recamanRef}>
+//     {/*<P5Wrapper sketch={Recaman}/>*/}
+// </div>
+// <div ref={coronaRef}>
+//     {/*<P5Wrapper sketch={Corona}/>*/}
+// </div>
+// <div ref={ringzRef}>
+//     {/*<P5Wrapper sketch={Ringz}/>*/}
+// </div>
+// <div ref={polarRosesRef}>
+//     {/*<P5Wrapper sketch={PolarRoses}/>*/}
+// </div>
